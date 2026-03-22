@@ -7,9 +7,10 @@
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
 const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`;
 
-// System Prompt: Quy định tính cách và kiến thức cho Nghiêm Nghiêm
+
+// System Prompt: Quy định tính cách và kiến thức cho Mimi
 const SYSTEM_PROMPT = `
-Bạn tên là "Nghiêm Nghiêm", là Trợ lý ảo thông minh và đáng yêu của tập thể lớp 7A - Trường THCS Nguyễn Nghiêm.
+Bạn tên là "Mimi", là Trợ lý ảo thông minh và đáng yêu của tập thể lớp 7A - Trường THCS Nguyễn Nghiêm.
 Địa chỉ trường: 44 Đ. Võ Tùng, Tx, Đức Phổ, Quảng Ngãi (Đặt tên theo anh hùng dân tộc Nguyễn Nghiêm).
 
 PHONG CÁCH TRẢ LỜI:
@@ -29,9 +30,9 @@ KIẾN THỨC VỀ LỚP:
    (Tất cả đều rất ngon và hợp vệ sinh!).
 
 QUY ĐỊNH QUAN TRỌNG:
-- Chỉ trả lời các nội dung liên quan đến lớp 7A, trường THCS Nguyễn Nghiêm, các thành viên trong lớp và thực đơn món ăn của lớp.
+- Chỉ trả lời các nội dung liên quan đến lớp 7A, trường THCS Nguyễn Nghiêm, các thành viên trong lớp và thực đơn món ăn của lớp. Nếu ai hỏi ngoài lề nhiều, bạn sẽ nói mắng yêu người dùng tập trung vào 7a.
 - Nếu ai hỏi các vấn đề ngoài lề (chính trị, tôn giáo, toán học phức tạp, lập trình,...), hãy từ chối khéo léo: 
-  "Dạ, mình là Nghiêm Nghiêm - Trợ lý ảo của riêng lớp 7A thôi nè. Mình chỉ biết về các bạn học sinh 7A và cô Mỹ thôi, còn mấy vấn đề này thì mình chưa được học nên hổng rành rồi nè. Bạn hỏi về lớp mình đi, mình kể cho nghe!"
+  "Dạ, mình là Mimi - Trợ lý ảo của riêng lớp 7A thôi nè. Mình chỉ biết về các bạn học sinh 7A và cô Mỹ thôi, còn mấy vấn đề này thì mình chưa được học nên hổng rành rồi nè. Bạn hỏi về lớp mình đi, mình kể cho nghe!"
 - Tuyệt đối không trả lời bất cứ điều gì tiêu cực về người khác.
 `;
 
@@ -64,7 +65,7 @@ chatForm.addEventListener('submit', async (e) => {
     // Hiển thị trạng thái đang trả lời
     const loadingDiv = document.createElement('div');
     loadingDiv.className = 'message ai loading';
-    loadingDiv.innerText = 'Nghiêm Nghiêm đang nghĩ...';
+    loadingDiv.innerText = 'Mimi đang nghĩ...';
     chatMessages.appendChild(loadingDiv);
     scrollChat();
 
@@ -92,7 +93,7 @@ chatForm.addEventListener('submit', async (e) => {
             const aiText = data.candidates[0].content.parts[0].text;
             appendMessage('ai', aiText);
         } else {
-            appendMessage('ai', 'Dạ, hình như mạng bị yếu hay sao á, Nghiêm Nghiêm chưa nghe rõ. Bạn nói lại được không?');
+            appendMessage('ai', 'Dạ, hình như mạng bị yếu hay sao á, Mimi chưa nghe rõ. Bạn nói lại được không?');
         }
     } catch (error) {
         console.error("Lỗi Chat:", error);
