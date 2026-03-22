@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Học tập sáng tạo | SmartClass 7A</title>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-deep: #1e3a8a;
+            --accent: #38bdf8;
+            --bg-body: #f8fafc;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --white: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Be Vietnam Pro', sans-serif;
+            background: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.7;
+        }
+
+        .detail-hero {
+            background: radial-gradient(circle at 10% 10%, #172554 0%, #0f172a 100%);
+            color: var(--white);
+            padding: 100px 24px 60px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .detail-hero::after {
+            content: '';
+            position: absolute;
+            bottom: -50px;
+            left: 0;
+            right: 0;
+            height: 100px;
+            background: var(--bg-body);
+            border-radius: 50% 50% 0 0;
+        }
+
+        .detail-hero h1 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 800;
+            color: var(--white);
+            margin-bottom: 16px;
+        }
+
+        .detail-hero p {
+            max-width: 600px;
+            margin: 0 auto;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.1rem;
+        }
+
+        .detail-hero .emoji-icon {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .detail-content {
+            padding: 80px 0;
+        }
+
+        .detail-content h2 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--primary-deep);
+            margin-bottom: 16px;
+        }
+
+        .detail-content p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            margin-bottom: 24px;
+        }
+
+        .highlight-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin: 40px 0;
+        }
+
+        .highlight-card {
+            background: var(--white);
+            border: 1px solid #e2e8f0;
+            border-radius: 20px;
+            padding: 32px;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .highlight-card::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            border-radius: 22px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .highlight-card:hover::before {
+            opacity: 1;
+        }
+
+        .highlight-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px rgba(37, 99, 235, 0.12);
+            border-color: transparent;
+        }
+
+        .highlight-card .icon {
+            font-size: 2.5rem;
+            margin-bottom: 16px;
+        }
+
+        .highlight-card h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary-deep);
+            margin-bottom: 8px;
+        }
+
+        .highlight-card p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin: 0;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            margin: 40px 0;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            aspect-ratio: 4/3;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-6px) scale(1.02);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.08);
+        }
+
+        .gallery-item .caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 20px;
+            background: linear-gradient(to top, rgba(15, 23, 42, 0.85), transparent);
+            color: var(--white);
+            font-weight: 600;
+            font-size: 0.95rem;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover .caption {
+            transform: translateY(0);
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 28px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-deep));
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 100px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
+        }
+
+        .back-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(37, 99, 235, 0.4);
+        }
+
+        .back-wrap {
+            text-align: center;
+            padding: 0 0 80px;
+        }
+
+        @media (max-width: 768px) {
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .detail-hero {
+                padding: 80px 20px 50px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="detail-hero">
+        <span class="emoji-icon">📚</span>
+        <h1>Học Tập Sáng Tạo</h1>
+        <p>Phương pháp học tập mới mẻ, ứng dụng CNTT vào từng tiết học thú vị tại lớp 7A.</p>
+    </div>
+
+    <section class="detail-content">
+        <div class="container">
+            <h2>Sáng tạo trong từng tiết học</h2>
+            <p>Ở lớp 7A, chúng mình không chỉ học những kiến thức trong sách giáo khoa mà còn áp dụng công nghệ vào từng
+                tiết học. Từ Quizziz để ôn bài, đến sơ đồ tư duy (Mind Map) và thuyết trình nhóm – mọi thứ đều
+                hiện đại và thú vị.</p>
+
+            <div class="highlight-grid">
+                <div class="highlight-card">
+                    <div class="icon">📱</div>
+                    <h3>Ứng dụng CNTT</h3>
+                    <p>Sử dụng Quizziz để ôn bài một cách thú vị và hấp dẫn, biến mỗi tiết học thành trò chơi.
+                    </p>
+                </div>
+                <div class="highlight-card">
+                    <div class="icon">🧠</div>
+                    <h3>Tư duy sáng tạo</h3>
+                    <p>Vẽ sơ đồ tư duy (Mind Map) để hiểu bài nhanh hơn, rèn luyện khả năng tổng hợp và phân tích.</p>
+                </div>
+                <div class="highlight-card">
+                    <div class="icon">🎬</div>
+                    <h3>Dự án học tập</h3>
+                    <p>Làm bài thuyết trình nhóm, quay video clip sáng tạo – thể hiện kỹ năng teamwork tuyệt vời.</p>
+                </div>
+            </div>
+
+            <h2 style="margin-top: 60px;">Hình ảnh hoạt động</h2>
+            <p>Những khoảnh khắc đáng nhớ trong hành trình học tập sáng tạo của lớp 7A.</p>
+
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="image/image-daihoichidoi.jpg" alt="Đại hội Chi đội">
+                    <div class="caption">📋 Đại hội Chi đội – tinh thần nghiêm túc</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="image/hoctap2.jpeg" alt="Trung thu">
+                    <div class="caption">📋 Đại hội Chi đội – tinh thần nghiêm túc</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="image/hoctap3.jpeg" alt="Tập thể lớp">
+                    <div class="caption">💙 Lớp 7A – tập thể luôn tiến bước</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="back-wrap">
+        <a href="index.html#hoat-dong" class="back-btn">← Quay về trang chủ</a>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giải thưởng | SmartClass 7A</title>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-deep: #1e3a8a;
+            --accent: #38bdf8;
+            --bg-body: #f8fafc;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --white: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Be Vietnam Pro', sans-serif;
+            background: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.7;
+        }
+
+        .detail-hero {
+            background: radial-gradient(circle at 10% 10%, #172554 0%, #0f172a 100%);
+            color: var(--white);
+            padding: 100px 24px 60px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .detail-hero::after {
+            content: '';
+            position: absolute;
+            bottom: -50px;
+            left: 0;
+            right: 0;
+            height: 100px;
+            background: var(--bg-body);
+            border-radius: 50% 50% 0 0;
+        }
+
+        .detail-hero h1 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 800;
+            color: var(--white);
+            margin-bottom: 16px;
+        }
+
+        .detail-hero p {
+            max-width: 600px;
+            margin: 0 auto;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.1rem;
+        }
+
+        .detail-hero .emoji-icon {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .detail-content {
+            padding: 80px 0;
+        }
+
+        .detail-content h2 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--primary-deep);
+            margin-bottom: 16px;
+        }
+
+        .detail-content p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            margin-bottom: 24px;
+        }
+
+        /* Award Category Section */
+        .award-category {
+            margin-bottom: 60px;
+        }
+
+        .award-category-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+            padding-bottom: 12px;
+            border-bottom: 3px solid transparent;
+            border-image: linear-gradient(90deg, var(--primary), var(--accent)) 1;
+        }
+
+        .award-category-header .cat-emoji {
+            font-size: 2rem;
+        }
+
+        .award-category-header h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary-deep);
+        }
+
+        /* Awards Grid - 2 columns */
+        .awards-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+
+        .award-card {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            background: var(--white);
+            border: 1px solid #e2e8f0;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+        }
+
+        .award-card::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            border-radius: 22px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .award-card:hover::before {
+            opacity: 1;
+        }
+
+        .award-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px rgba(37, 99, 235, 0.15);
+            border-color: transparent;
+        }
+
+        .award-card-img {
+            width: 100%;
+            aspect-ratio: 4/3;
+            overflow: hidden;
+        }
+
+        .award-card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .award-card:hover .award-card-img img {
+            transform: scale(1.08);
+        }
+
+        .award-card-body {
+            padding: 20px 24px;
+        }
+
+        .award-card-body h4 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--primary-deep);
+            margin-bottom: 6px;
+        }
+
+        .award-card-body p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        .award-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            color: #92400e;
+            padding: 4px 14px;
+            border-radius: 100px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        /* Back Button */
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 28px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-deep));
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 100px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
+        }
+
+        .back-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(37, 99, 235, 0.4);
+        }
+
+        .back-wrap {
+            text-align: center;
+            padding: 0 0 80px;
+        }
+
+        @media (max-width: 768px) {
+            .awards-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .detail-hero {
+                padding: 80px 20px 50px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="detail-hero">
+        <span class="emoji-icon">🏆</span>
+        <h1>Giải Thưởng Của Lớp</h1>
+        <p>Tập thể và cá nhân lớp 7A tự hào với những thành tích xuất sắc trong học tập và hoạt động phong trào.</p>
+    </div>
+
+    <section class="detail-content">
+        <div class="container">
+
+            <!-- Giải chung -->
+            <div class="award-category">
+                <div class="award-category-header">
+                    <span class="cat-emoji">🏅</span>
+                    <h3>Giải chung</h3>
+                </div>
+
+                <div class="awards-grid">
+                    <div class="award-card">
+                        <div class="award-card-img">
+                            <img src="image/giaithuong3.jpeg" alt="Giải văn hóa văn nghệ">
+                        </div>
+                        <div class="award-card-body">
+                            <span class="award-badge">🥉 Giải ba</span>
+                            <h4>Hội thi Văn hóa Văn nghệ</h4>
+                            <p>Phạm Huỳnh Trọng Tín đại diện lớp tham gia và xuất sắc giành giải ba.</p>
+                        </div>
+                    </div>
+
+                    <div class="award-card">
+                        <div class="award-card-img">
+                            <img src="image/giaithuong6.jpeg" alt="Tiếng hát học sinh">
+                        </div>
+                        <div class="award-card-body">
+                            <span class="award-badge">🎤 Tiếng hát học sinh</span>
+                            <h4>Giai Điệu Tri Ân 2025–2026</h4>
+                            <p>Cuộc thi tiếng hát học sinh – nơi giọng ca 7A tỏa sáng rực rỡ.</p>
+                        </div>
+                    </div>
+
+                    <div class="award-card">
+                        <div class="award-card-img">
+                            <img src="image/giaithuong7.jpeg" alt="Trang trí Trung Thu">
+                        </div>
+                        <div class="award-card-body">
+                            <span class="award-badge">🏮 Trung Thu</span>
+                            <h4>Giải Trang Trí Trung Thu</h4>
+                            <p>Sáng tạo và khéo léo trong cuộc thi trang trí đèn lồng, mâm cỗ Trung Thu.</p>
+                        </div>
+                    </div>
+
+                    <div class="award-card">
+                        <div class="award-card-img">
+                            <img src="image/giaithuong8.png" alt="Đại hội Chi đội">
+                        </div>
+                        <div class="award-card-body">
+                            <span class="award-badge">⭐ Hoạt động</span>
+                            <h4>Đại Hội Chi Đội 7A</h4>
+                            <p>Tổ chức thành công Đại hội Chi đội với tinh thần nghiêm túc, đoàn kết.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Giải IOE -->
+            <div class="award-category">
+                <div class="award-category-header">
+                    <span class="cat-emoji">🌟</span>
+                    <h3>Giải IOE – Olympic Tiếng Anh Internet</h3>
+                </div>
+
+                <div class="awards-grid">
+                    <div class="award-card">
+                        <div class="award-card-img">
+                            <img src="image/giaithuong1.jpeg" alt="Giải IOE">
+                        </div>
+                        <div class="award-card-body">
+                            <span class="award-badge">🏆 IOE</span>
+                            <h4>Giải IOE cấp xã/phường</h4>
+                            <p>Thành tích ấn tượng tại vòng thi Olympic Tiếng Anh cấp xã/phường.</p>
+                        </div>
+                    </div>
+
+                    <div class="award-card">
+                        <div class="award-card-img">
+                            <img src="image/giaithuong2.jpeg" alt="Giải IOE">
+                        </div>
+                        <div class="award-card-body">
+                            <span class="award-badge">🏆 IOE</span>
+                            <h4>Giải IOE cấp xã/phường</h4>
+                            <p>Thành tích ấn tượng tại vòng thi Olympic Tiếng Anh cấp xã/phường.</p>
+                        </div>
+                    </div>
+
+                    <div class="award-card">
+                        <div class="award-card-img">
+                            <img src="image/giaithuong4.jpeg" alt="Giải IOE cá nhân">
+                        </div>
+                        <div class="award-card-body">
+                            <span class="award-badge">🏆 IOE</span>
+                            <h4>Giải IOE cấp trường</h4>
+                            <p>Thành tích ấn tượng tại vòng thi Olympic Tiếng Anh cấp trường.</p>
+                        </div>
+                    </div>
+
+                    <div class="award-card">
+                        <div class="award-card-img">
+                            <img src="image/giaithuong5.jpeg" alt="Giải IOE đồng đội">
+                        </div>
+                        <div class="award-card-body">
+                            <span class="award-badge">🏆 IOE</span>
+                            <h4>Giải IOE cấp trường</h4>
+                            <p>Thành tích ấn tượng tại vòng thi Olympic Tiếng Anh cấp trường.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <div class="back-wrap">
+        <a href="index.html#hoat-dong" class="back-btn">← Quay về trang chủ</a>
+    </div>
+
+</body>
+
+</html>
